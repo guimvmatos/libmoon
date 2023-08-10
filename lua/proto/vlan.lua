@@ -1,11 +1,11 @@
 ------------------------------------------------------------------------
---- @file PROTO.lua
---- @brief (PROTO) utility.
+--- @file vlan.lua
+--- @brief VLAN utility.
 --- Utility functions for the PROTO_header structs 
 --- Includes:
---- - PROTO constants
---- - PROTO header utility
---- - Definition of PROTO packets
+--- - Vlan constants
+--- - Vlan header utility
+--- - Definition of VLAN packets
 ------------------------------------------------------------------------
 
 --[[
@@ -18,24 +18,27 @@
 -- - proto/proto.lua: add PROTO.lua to the list so it gets loaded
 --]]
 local ffi = require "ffi"
-require "proto.template"
+
+require "utils"
+require "vlan.template"
 local initHeader = initHeader
 
 
 ---------------------------------------------------------------------------
----- PROTO constants 
+---- VLAN constants 
 ---------------------------------------------------------------------------
 
---- PROTO protocol constants
-local PROTO = {}
+--- vlan protocol constants
+local vlan = {}
 
 
 ---------------------------------------------------------------------------
----- PROTO header
+---- VLAN header
 ---------------------------------------------------------------------------
 
-PROTO.headerFormat = [[
-	uint8_t		xyz;
+vlan.headerFormat = [[
+	uint16_t	TCI;
+	uint16_t	ether_type;
 ]]
 
 --- Variable sized member
