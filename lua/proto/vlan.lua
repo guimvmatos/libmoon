@@ -37,37 +37,39 @@ local vlan = {}
 ---------------------------------------------------------------------------
 
 vlan.headerFormat = [[
-	uint16_t	TCI;
+	uint16_t	tci;
 	uint16_t	ether_type;
 ]]
 
 --- Variable sized member
-PROTO.headerVariableMember = nil
+vlan.headerVariableMember = nil
 
 --- Module for PROTO_address struct
-local PROTOHeader = initHeader()
-PROTOHeader.__index = PROTOHeader
+local vlanHeader = initHeader()
+vlanHeader.__index = vlanHeader
 
 --[[ for all members of the header with non-standard data type: set, get, getString 
 -- for set also specify a suitable default value
 --]]
---- Set the XYZ.
---- @param int XYZ of the PROTO header as A bit integer.
-function PROTOHeader:setXYZ(int)
-	int = int or 0
+--- Set the TCI
+--- @param int TCI of the Vlan header as 16 bit integer.
+function vlanHeader:setTci(int)
+	int = int or 0 --determinar todo
+	self.tci = hton1t(int)
+
+--- Retrieve the TCI.
+--- @return TCI as 16 bit integer.
+function vlanHeader:getTci()
+	return hton16(self.tci)
 end
 
---- Retrieve the XYZ.
---- @return XYZ as A bit integer.
-function PROTOHeader:getXYZ()
-	return nil
+--- Retrieve the TCI as string.
+--- @return TCI as string.
+function vlanHeader:getTciString()
+	return self:getTci()
 end
 
---- Retrieve the XYZ as string.
---- @return XYZ as string.
-function PROTOHeader:getXYZString()
-	return nil
-end
+todo, fazer o mesmo esqueme acima, set, get, getstring para o ether_type
 
 --- Set all members of the PROTO header.
 --- Per default, all members are set to default values specified in the respective set function.
