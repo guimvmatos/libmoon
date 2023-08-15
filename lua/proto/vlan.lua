@@ -20,7 +20,7 @@
 local ffi = require "ffi"
 
 require "utils"
-require "vlan.template"
+require "proto.template"
 local initHeader = initHeader
 
 
@@ -55,7 +55,7 @@ vlanHeader.__index = vlanHeader
 --- @param int TCI of the Vlan header as 16 bit integer.
 function vlanHeader:setTci(int)
 	int = int or 4095
-	self.tci = hton1t(int)
+	self.tci = hton16(int)
 end
 
 --- Retrieve the TCI.
@@ -74,7 +74,7 @@ end
 --- @param int Ether_type of the Vlan header as 16 bit integer.
 function vlanHeader:setEtherType(int)
 	int = int or 8100
-	self.ether_type = hton1t(int)
+	self.ether_type = hton16(int)
 
 --- Retrieve the Ether_type.
 --- @return Ether_type as 16 bit integer.
