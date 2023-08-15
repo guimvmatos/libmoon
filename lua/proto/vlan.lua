@@ -130,7 +130,8 @@ end
 --- This function must exist and is only used when get/dump is executed on 
 --- an unknown (mbuf not yet casted to e.g. tcpv6 packet) packet (mbuf)
 --- @return String next header (e.g. 'eth', 'ip4', nil)
-function PROTOHeader:resolveNextHeader()
+function vlanHeader:resolveNextHeader()
+		--local proto = self.getEtherType()
 	return nil
 end	
 

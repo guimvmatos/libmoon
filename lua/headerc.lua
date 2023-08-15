@@ -32,7 +32,11 @@ struct ipv4_hdr {
 	uint32_t dst_addr;		/**< destination address */
 } __attribute__((__packed__));
 
+/**
+ * VLAN Header
+ */
 
+ s
 /**
  * IPv6 Header
  */
