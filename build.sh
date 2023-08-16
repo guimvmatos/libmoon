@@ -97,6 +97,6 @@ make -j $NUM_CPUS
 
 echo Trying to bind interfaces, this will fail if you are not root
 echo Try "sudo ./bind-interfaces.sh" if this step fails
-./bind-interfaces.sh ${FLAGS}
+#./bind-interfaces.sh ${FLAGS}
 )
 
