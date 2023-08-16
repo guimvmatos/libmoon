@@ -11,7 +11,7 @@
 --[[
 -- Use this file as template when implementing a new protocol (to implement all mandatory stuff)
 -- Replace all occurrences of PROTO with your protocol (e.g. sctp)
--- Remove unnecessary comments in this file (comments inbetween [[...]])
+-- Remove unnecessary comments in this file (comments inbetween [[...]]
 -- Necessary changes to other files:
 -- - packet.lua: if the header has a length member, adapt packetSetLength; 
 -- 				 if the packet has a checksum, adapt createStack (loop at end of function) and packetCalculateChecksums
