@@ -868,7 +868,7 @@ pkt.getEthernetVlanPacket = createStack({"eth", subType = "vlan"})
 pkt.getEthVlanPacket = pkt.getEthernetVlanPacket
 pkt.getEthernetQinQPacket = createStack({"eth", subType = "qinq"})
 pkt.getEthQinQPacket = pkt.getEthernetQinQPacket
-pkt.getVlanPacket = createStack("eth", "vlan")
+pkt.getVlanPacket = createStack("eth", "vlan", "pdcp")
 
 
 pkt.getIP4Packet = createStack("eth", "ip4") 
