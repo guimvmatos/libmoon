@@ -75,6 +75,7 @@ end
 function vlanHeader:setEtherType(int)
 	int = int or 8100
 	self.ether_type = hton16(int)
+end
 
 --- Retrieve the Ether_type.
 --- @return Ether_type as 16 bit integer.
