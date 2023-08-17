@@ -37,7 +37,7 @@ local rlc = {}
 rlc.headerFormat = [[
 	uint8_t			oct;
 	uint16_t		sn;
-	uint16_t		so
+	uint16_t		so;
 ]]
 
 --- Variable sized member
