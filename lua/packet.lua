@@ -873,6 +873,7 @@ pkt.getVlanPacket = createStack("eth", "vlan")
 pkt.getVlanRlcPacket = createStack("eth", "vlan", "rlc")
 pkt.getVlanRlcPdcpPacket = createStack("eth", "vlan", "rlc", "pdcp")
 pkt.getVlanRlcPdcpMacPacket = createStack("eth", "vlan", "rlc", "pdcp", "mac")
+pkt.get5gPacket = createStack("eth", "vlan", "mac", "rlc", "pdcp", "ip4")
 
 pkt.getIP4Packet = createStack("eth", "ip4") 
 pkt.getIP6Packet = createStack("eth", "ip6")
