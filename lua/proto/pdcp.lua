@@ -41,7 +41,7 @@ pdcp.headerFormat = [[
 --oct = R1, R2, R3, R4 e pdcp_sn1 (4 bits for R's and 4 for pdcp_sn1)
 
 --- Variable sized member
-pcdp.headerVariableMember = nil
+pdcp.headerVariableMember = nil
 
 --- Module for pcdp_address struct
 local pcdpHeader = initHeader()
