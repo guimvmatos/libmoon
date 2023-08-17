@@ -35,10 +35,14 @@ struct ipv4_hdr {
 /**
  * VLAN Header
  */
+
+/*
 struct vlan_hdr {
-	uint16_t tci;	/**< testes1. */
-	uint16_t ether_type; 	/**< testes2. */
+	uint16_t tci;
+	uint16_t ether_type;
 } __attribute__((__packed__));
+*/
+
 
 /**
  * IPv6 Header
