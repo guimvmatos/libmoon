@@ -98,8 +98,8 @@ function macHeader:fill(args, pre)
 	args = args or {}
 	pre = pre or "mac"
 
-	self:setXYZ(args[pre .. "Lcid"])
-	self:setXYZ(args[pre .. "Elcid"])
+	self:setLcid(args[pre .. "Lcid"])
+	self:setElcid(args[pre .. "Elcid"])
 end
 
 --- Retrieve the values of all members.
