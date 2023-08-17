@@ -43,47 +43,47 @@ pdcp.headerFormat = [[
 --- Variable sized member
 pdcp.headerVariableMember = nil
 
---- Module for pcdp_address struct
-local pcdpHeader = initHeader()
-pcdpHeader.__index = pcdpHeader
+--- Module for pdcp_address struct
+local pdcpHeader = initHeader()
+pdcpHeader.__index = pdcpHeader
 
 --[[ for all members of the header with non-standard data type: set, get, getString 
 -- for set also specify a suitable default value
 --]]
 --- Set the oct.
 --- @param int oct of the PDCP header as A bit integer.
-function pcdpHeader:setOct(int)
+function pdcpHeader:setOct(int)
 	int = int or 0
     self.oct = hton(int)
 end
 
 --- Retrieve the oct.
 --- @return oct as A bit integer.
-function pcdpHeader:getOct()
+function pdcpHeader:getOct()
 	return hton(self.oct)
 end
 
 --- Retrieve the oct as string.
 --- @return oct as string.
-function pcdpHeader:getOctString()
+function pdcpHeader:getOctString()
 	return self.getOct()
 end
 
 --- @param int pdcp_sn of the PDCP header as A bit integer.
-function pcdpHeader:setPdcp_sn(int)
+function pdcpHeader:setPdcp_sn(int)
 	int = int or 0
     self.pdcp_sn = hton(int)
 end
 
 --- Retrieve the oct.
 --- @return oct as A bit integer.
-function pcdpHeader:getPdcp_sn()
+function pdcpHeader:getPdcp_sn()
 	return hton(self.pdcp_sn)
 end
 
 --- Retrieve the oct as string.
 --- @return oct as string.
-function pcdpHeader:getPdcp_snString()
+function pdcpHeader:getPdcp_snString()
 	return self.getPdcp_sn()
 end
 
