@@ -23,20 +23,20 @@ local initHeader = initHeader
 
 
 ---------------------------------------------------------------------------
----- mac constants 
+---- MAC constants 
 ---------------------------------------------------------------------------
 
---- PROTO protocol constants
+--- MAC protocol constants
 local mac = {}
 
 
 ---------------------------------------------------------------------------
----- mac header
+---- MAC header
 ---------------------------------------------------------------------------
 
 mac.headerFormat = [[
 	uint8_t		lcid;
-	uint8_t		elcid
+	uint8_t		elcid;
 ]]
 
 --- Variable sized member
