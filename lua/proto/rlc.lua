@@ -83,23 +83,24 @@ end
 --- Retrieve the Sn as string.
 --- @return Sn as string.
 function rlcHeader:getSnString()
-	return nil
+	return self:getSn()
 end
 
 function rlcHeader:setSo(int)
 	int = int or 0
+	self.so = hton16(int)
 end
 
 --- Retrieve the So.
 --- @return So as A bit integer.
-function rlcHeader:getSo()
-	return nil
+function rlcHeader:setSo()
+	return hton16()(self.so)
 end
 
 --- Retrieve the So as string.
 --- @return So as string.
 function rlcHeader:getSoString()
-	return nil
+	return self:getSo()
 end
 
 --- Set all members of the PROTO header.
@@ -111,30 +112,35 @@ end
 --- fill() -- only default values
 --- fill{ PROTOXYZ=1 } -- all members are set to default values with the exception of PROTOXYZ, ...
 --- @endcode
-function PROTOHeader:fill(args, pre)
+function rlcHeader:fill(args, pre)
 	args = args or {}
-	pre = pre or "PROTO"
+	pre = pre or "rlc"
 
-	self:setXYZ(args[pre .. "PROTOXYZ"])
+	self:setOcp(args[pre .. "Ocp"])
+	self:setSn(args[pre .. "Sn"])
+	self:setSo(args[pre .. "So"])
 end
 
 --- Retrieve the values of all members.
 --- @param pre prefix for namedArgs. Default 'PROTO'.
 --- @return Table of named arguments. For a list of arguments see "See also".
---- @see PROTOHeader:fill
-function PROTOHeader:get(pre)
-	pre = pre or "PROTO"
+--- @see rlcHeader:fill
+function rlcHeader:get(pre)
+	pre = pre or "rlc"
 
 	local args = {}
-	args[pre .. "PROTOXYZ"] = self:getXYZ() 
+	args[pre .. "Oct"] = self:getOct()
+	args[pre .. "Sn"] = self:getSn()
+	args[pre .. "So"] = self:getSo()
 
 	return args
 end
 
 --- Retrieve the values of all members.
 --- @return Values in string format.
-function PROTOHeader:getString()
-	return "PROTO " .. self:getXYZString()
+function rlcHeader:getString()
+	return "rlc " .. self:getXYZString()
+	--terminar aqui
 end
 
 --- Resolve which header comes after this one (in a packet)
@@ -142,7 +148,7 @@ end
 --- This function must exist and is only used when get/dump is executed on 
 --- an unknown (mbuf not yet casted to e.g. tcpv6 packet) packet (mbuf)
 --- @return String next header (e.g. 'eth', 'ip4', nil)
-function PROTOHeader:resolveNextHeader()
+function rlcHeader:resolveNextHeader()
 	return nil
 end	
 
@@ -155,8 +161,8 @@ end
 --- @param nextHeader The header following after this header in a packet
 --- @param accumulatedLength The so far accumulated length for previous headers in a packet
 --- @return Table of namedArgs
---- @see PROTOHeader:fill
-function PROTOHeader:setDefaultNamedArgs(pre, namedArgs, nextHeader, accumulatedLength)
+--- @see rlcHeader:fill
+function rlcHeader:setDefaultNamedArgs(pre, namedArgs, nextHeader, accumulatedLength)
 	return namedArgs
 end
 
@@ -165,7 +171,7 @@ end
 ---- Metatypes
 ------------------------------------------------------------------------
 
-PROTO.metatype = PROTOHeader
+rlc.metatype = rlcHeader
 
 
-return PROTO
+return rlc

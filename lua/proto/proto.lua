@@ -9,6 +9,7 @@ proto.eth = require "proto.ethernet"
 proto.ethernet = proto.eth
 proto.vlan = require "proto.vlan"
 proto.pdcp = require "proto.pdcp"
+proto.rlc = require "proto.rlc"
 proto.pdcp = require "proto.mac"
 proto.ip4 = require "proto.ip4"
 proto.ip6 = require "proto.ip6"
