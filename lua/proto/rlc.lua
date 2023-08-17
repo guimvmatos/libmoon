@@ -94,7 +94,7 @@ end
 --- Retrieve the So.
 --- @return So as A bit integer.
 function rlcHeader:setSo()
-	return hton16()(self.so)
+	return hton16(self.so)
 end
 
 --- Retrieve the So as string.
@@ -116,7 +116,7 @@ function rlcHeader:fill(args, pre)
 	args = args or {}
 	pre = pre or "rlc"
 
-	self:setOcp(args[pre .. "Ocp"])
+	self:setOct(args[pre .. "Oct"])
 	self:setSn(args[pre .. "Sn"])
 	self:setSo(args[pre .. "So"])
 end
@@ -139,8 +139,7 @@ end
 --- Retrieve the values of all members.
 --- @return Values in string format.
 function rlcHeader:getString()
-	return "rlc " .. self:getXYZString()
-	--terminar aqui
+	return "rlc Oct" .. self:getOctString() .. "SN" .. self:getSnString() .. "SO" .. self:getSoString()
 end
 
 --- Resolve which header comes after this one (in a packet)
