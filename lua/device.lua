@@ -760,6 +760,12 @@ function txQueue:send(bufs)
 	return bufs.size
 end
 
+function txQueue:send2(bufs)
+	self.used = true
+	local tx = dpdkc.dpdk_send_all_packets(self.id, self.qid, bufs.array, bufs.size)
+	return tx
+end
+
 function txQueue:sendSingle(buf)
 	self.used = true
 	dpdkc.dpdk_send_single_packet(self.id, self.qid, buf)
@@ -863,6 +869,24 @@ function rxQueue:tryRecv(bufArray, maxWait)
 		local rx = dpdkc.rte_eth_rx_burst_export(self.id, self.qid, bufArray.array, bufArray.size)
 		if rx > 0 then
 			return rx
+		end
+		maxWait = maxWait - 1
+		-- don't sleep pointlessly
+		if maxWait < 0 then
+			break
+		end
+		libmoon.sleepMicros(1)
+	end
+	return 0
+end
+
+--- Receive packets from a rx queue with a timeout.
+function txQueue:tryRecv(bufArray, maxWait)
+	maxWait = maxWait or math.huge
+	while maxWait >= 0 do
+		local tx = dpdkc.rte_eth_tx_burst_export(self.id, self.qid, bufArray.array, bufArray.size)
+		if rx > 0 then
+			return tx
 		end
 		maxWait = maxWait - 1
 		-- don't sleep pointlessly
