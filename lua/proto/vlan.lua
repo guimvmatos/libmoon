@@ -55,8 +55,8 @@ vlanHeader.__index = vlanHeader
 --- @param int TCI of the Vlan header as 16 bit integer.
 function vlanHeader:setTci(int)
 	int = int or 4095
-	--self.tci = ntoh(int)
-	self.tci = int
+	--self.tci = hton16(int)
+	self.tci = ntoh16(int)
 end
 
 --- Retrieve the TCI.
