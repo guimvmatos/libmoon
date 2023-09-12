@@ -62,7 +62,8 @@ end
 --- Retrieve the TCI.
 --- @return TCI as 16 bit integer.
 function vlanHeader:getTci()
-	return hton16(self.tci)
+	--return hton16(self.tci)
+	return ntoh16(self.tci)
 end
 
 --- Retrieve the TCI as string.
